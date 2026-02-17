@@ -26,6 +26,7 @@ class AndroidApplicationDependenciesConventionPlugin : Plugin<Project> {
             extensions.getByType<ApplicationExtension>().apply {
                 dependencies {
                     "implementation"(project(":common"))
+                    "implementation"(project(":microfrontend"))
 
                     "implementation"(libs.blurView)
                     "implementation"(libs.haze)
@@ -38,6 +39,8 @@ class AndroidApplicationDependenciesConventionPlugin : Plugin<Project> {
                     "implementation"(libs.kotlinx.coroutines.android)
                     "implementation"(libs.androidx.concurrent.ktx)
                     "fullImplementation"(libs.kotlinx.coroutines.play.services)
+
+                    "implementation"(libs.apache.commons.text)
 
                     "implementation"(libs.appcompat)
                     "implementation"(libs.androidx.lifecycle.runtime.ktx)
@@ -95,9 +98,13 @@ class AndroidApplicationDependenciesConventionPlugin : Plugin<Project> {
 
                     "implementation"(libs.reorderable)
                     "implementation"(libs.changeLog)
+                    "implementation"(libs.aboutlibraries.compose.m3)
 
                     "implementation"(libs.zxing)
                     "implementation"(libs.improv)
+
+                    "fullImplementation"(libs.play.services.tflite)
+                    "minimalImplementation"(libs.litert)
 
                     "implementation"(libs.car.core)
 

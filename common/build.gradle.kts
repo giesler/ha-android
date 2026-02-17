@@ -22,7 +22,7 @@ android {
 
     sourceSets {
         // Adds exported schema location as test app assets.
-        getByName("androidTest").assets.srcDirs("$projectDir/schemas")
+        getByName("androidTest").assets.directories += "$projectDir/schemas"
     }
 }
 
@@ -73,6 +73,7 @@ dependencies {
     lintChecks(libs.compose.lint.checks)
 
     implementation(libs.media3.exoplayer)
+    implementation(libs.media3.datasource.okhttp)
     // The play-services-cronet dependency is excluded here because each app flavor provides its own Cronet implementation:
     // - full: uses Google Play Services Cronet (dynamically loaded via GMS)
     // - minimal: uses embedded Cronet (bundled in the APK)
@@ -80,4 +81,7 @@ dependencies {
         exclude(group = "com.google.android.gms", module = "play-services-cronet")
     }
     implementation(libs.cronet.api)
+
+    // Force patched protobuf-javalite version to fix CVE-2024-7254 (DoS via StackOverflow in nested groups/map fields)
+    implementation(libs.protobuf.javalite)
 }
